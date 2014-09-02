@@ -1,0 +1,79 @@
+﻿.b-form {
+	padding:20px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.b-form__add_event {
+	width:310px;
+}
+
+.b-form_fast_add_event {
+	width: 310px;
+}
+
+.b-form__field{
+	list-style-type:none;
+	padding:0px;
+	margin:0px;
+}
+
+.b-form__container_field {
+	display:inline-block;
+	width:100%;
+	box-sizing:border-box;
+	margin-bottom:5px;
+}
+
+.b-form__input, .b-form__textarea{
+	padding:5px;
+	width:100%;
+	box-sizing:border-box;
+	border-radius:3px 3px;
+	border: 1px solid rgb(235, 235, 235);
+	box-shadow: inset 0px 1px 4px rgba(0,0,0,0.5);
+	font:inherit;
+}
+
+.b-form__input {
+	height:30px;
+}
+
+.b-form__textarea {
+	height:150px;
+	resize: none;
+}
+
+.b-form__empty {
+	height:30px;
+}
+
+.b-form__control {
+	list-style-type:none;
+	margin:10px 0 0 0;
+	padding:0px;
+}
+
+.b-form__control_button {
+	display:inline-block;
+}
+
+.b-form_button_default {
+	border-radius: 3px;
+	border: 1px solid rgb(177, 177, 177);
+	box-shadow: inset 0px -4px 8px rgba(177,177,177,0.5); 
+	background-color: white;
+}
+
+.b-button {
+	padding:3px;
+	height:100%;
+	box-sizing:border-box;
+	background-color: rgb(2, 113, 199);
+	color: white;
+	cursor: pointer;
+	border:1px solid rgb(2, 113, 199);
+	border-radius: 2px;
+	text-shadow: rgba(0, 0, 0, 0.247059) -1px 1px 0px;
+	box-shadow: rgba(255, 255, 255, 0) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+	font-weight: bolder;
+}

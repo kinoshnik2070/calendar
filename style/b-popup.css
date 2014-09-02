@@ -1,0 +1,59 @@
+﻿.b-popup {
+	position: absolute;
+	max-width: 400px;
+	border-radius: 3px;
+	color: black;
+	background-color: white;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+	top: 100px;
+	left: 100px;
+	z-index: 100;
+}
+
+.b-popup__close {
+	position:absolute;
+	width:10px;
+	height:10px;
+	top:0px;
+	right:0px;
+	cursor:pointer;
+}
+
+.b-popup:before, .b-popup:after {
+	content: "";
+	position: absolute;
+}
+
+.b-popup:before {
+	background-color:white;
+	width:10px;
+	height:10px;
+	box-shadow: -5px 5px 8px -2px rgba(0, 0, 0, 0.2);
+	border: solid white;
+	border-width: 0 0 1px 1px;
+}
+
+.b-popup__left:before {
+	left: -5px;
+	top:20px;
+	-webkit-transform: rotate(-315deg);
+	-ms-transform: rotate(-315deg);
+	transform: rotate(-315deg);
+}
+
+.b-popup__right:before {
+	right: -5px; 
+	top:20px;
+	-webkit-transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.b-popup__bottom:before {
+	top: -5px;
+	-webkit-transform: rotate(-225deg);
+	-ms-transform: rotate(-225deg);
+	transform: rotate(-225deg);
+	/left:50%;
+	/margin-left:-5px;
+}
