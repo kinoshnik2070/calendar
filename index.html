@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Пример кода</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="style/b-calendar.css" />
+		<link rel="stylesheet" href="style/b-form.css" />
+		<link rel="stylesheet" href="style/b-head.css" />
+		<link rel="stylesheet" href="style/b-list.css" />
+		<link rel="stylesheet" href="style/b-popup.css" />
+		<link rel="stylesheet" href="style/g.css" />
+	</head>
+	<body>
+		<div class="b-head">
+			<div class="b-head__controls" style="width:900px;margin:auto;position:relative;top:60px;">
+				<ul style="list-style-type:none;margin	:0;padding:0;">
+					<li style="display:inline-block;">
+						<input class="b-button" value="Добавить" type="button" />
+					</li>
+					<li style="display:inline-block;">
+						<input class="b-button" value="Обновить" type="button" />
+					</li>
+					<li style="display:inline-block;float:right;">
+						<input type="text" />
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="b-calendar">
+			<div class="b-calendar__controls">
+				<div class="b-calendar__button b-calendar__button_previous_month"><</div>
+				<div class="b-calendar__title"></div>
+				<div class="b-calendar__button b-calendar__button_next_month">></div>
+				<div class="b-calendar__button b-calendar__button_today">Сегодня</div>
+			</div>
+			<table class="b-calendar__content_month">
+				<tbody class="b-calendar__container_day"></tbody>
+			</table>
+		</div>
+		<script type="text/template" id="calendar-day-template">
+			<td class="b-calendar__day" data-date="{dateString}">
+				<div class="b-calendar__day_content">{dayOfWeek}, {day}</div>
+			</td>
+		</script>
+		<script type="text/template" id="calendar-title-tempalte">
+			{month} {year}
+		</script>
+		<script type="text/template" id="popup-fast-add-template">
+			<form class="b-form b-form_fast_add_event">
+				<ul class="b-form__field">
+					<li class="b-form__container_field">
+						<input type="text" class="b-form__input" />
+					</li>
+				</ul>
+				<ul class="b-form__control">
+					<li class="b-form__control_button">
+						<input type="button" class="b-form_button_default" value="Создать" />
+					</li>
+				</ul>
+			</form>
+		</script>
+		<script type="text/template" id="popup-add-template">
+			<form class="b-form b-form__add_event">
+				<ul class="b-form__field">
+					<li class="b-form__container_field">
+						<input type="text" class="b-form__input" />
+					</li>
+					<li class="b-form__container_field">
+						<input type="text" class="b-form__input" />
+					</li>
+						<li class="b-form__container_field">
+						<input type="text" class="b-form__input" />
+					</li>
+					<li class="b-form__empty"></li>
+					<li class="b-form__container_field">
+						<textarea class="b-form__textarea"></textarea>
+					</li>
+				</ul>
+				<ul class="b-form__control">
+					<li class="b-form__control_button">
+						<input type="button" class="b-form_button_default" value="Добавить" />
+					</li>
+					<li class="b-form__control_button">
+						<input type="button" class="b-form_button_default" value="Удалить" />
+					</li>
+				</ul>
+			</form>
+		</script>
+		<script type="text/javascript" src="script/hh.js"></script>
+		<script type="text/javascript" src="script/hh.Observer.js"></script>
+		<script type="text/javascript" src="script/hh.gui.Calendar.js"></script>
+		<script type="text/javascript" src="script/hh.gui.Popup.js"></script>
+		<script type="text/javascript" src="script/hh.gui.DropList.js"></script>
+		<script type="text/javascript" src="script/hh.gui.Scrollbar.js"></script>
+		<script type="text/javascript" src="script/main.js"></script>
+	</body>
+</html>
