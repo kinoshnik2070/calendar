@@ -50,10 +50,9 @@
 }
 
 .b-popup__bottom:before {
+	left: 20px;
 	top: -5px;
 	-webkit-transform: rotate(-225deg);
 	-ms-transform: rotate(-225deg);
 	transform: rotate(-225deg);
-	/left:50%;
-	/margin-left:-5px;
 }
