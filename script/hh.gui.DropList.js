@@ -16,8 +16,6 @@
 		this._data = [];
 		this._tmplItem = options.tmplItem;
 
-
-
 		this.renderByData = function(data) {
 
 			this._data = data;
@@ -30,16 +28,19 @@
 			this.show();
 
 
-			var a = new hh.gui.Scrollbar({
+			var b = {
 				scroller: document.querySelector(".b-list__scroll"),
 				content: document.querySelector(".b-list__event"),
 				wrapper: document.querySelector(".b-list__scroll_container")
-			});
-		};
+			};
+			if(!this.scrollbar) {
+				this.scrollbar = new hh.gui.Scrollbar(b);
+			}
+			this.scrollbar.calck();
 
-		render = function() {
-			this.parent.render();
-			this._container.innerHTML = this._template;
+			if(b.content.offsetHeight < b.scroller.offsetHeight) {
+				hh.util.addClass(this._container, "b-popup-scoller")
+			}
 		};
 
 	};

@@ -6,6 +6,7 @@
 		if (typeof options === "undefined") {
 			options = {};
 		}
+		this.closed = options.closed;
 
 		this.margin = options.margin;
 
@@ -19,8 +20,9 @@
 
 		hh.util.addClass(this._close, "b-popup__close");
 		this._container.innerHTML = this._template;
-		this._container.appendChild(this._close);
-		this._close.innerHTML = "&dagger;";
+		if(this.closed) {
+			this._container.appendChild(this._close);
+		}
 
 		this._initEvents = function() {
 
@@ -47,6 +49,9 @@
 		};
 
 		this.render = function() {
+			if(this.closed) {
+				this._container.appendChild(this._close);
+			}
 			document.body.appendChild(this._container);
 		};
 
@@ -65,7 +70,6 @@
 		};
 
 		this._calckPosition = function() {
-			console.info(this._anchor);
 			if (this._anchor === null) {
 				return
 			};

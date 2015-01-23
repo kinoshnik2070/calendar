@@ -86,12 +86,23 @@
 				</ul>
 			</form>
 		</script>
+		<script type="text/template" id="result-search-item-template">
+			<li class="b-list__event_item">
+				<div class="b-list__fading_text_container">
+					<div class="b-list__fading_text"></div>
+				</div>
+				<div class="b-list__event_item_title">{name}</div>
+				<div class="b-list__event_item_date">{day} {month}</div>
+			</li>
+			<hr/>
+		</script>
 		<script type="text/javascript" src="script/hh.js"></script>
 		<script type="text/javascript" src="script/hh.Observer.js"></script>
 		<script type="text/javascript" src="script/hh.gui.Calendar.js"></script>
 		<script type="text/javascript" src="script/hh.gui.Popup.js"></script>
 		<script type="text/javascript" src="script/hh.gui.DropList.js"></script>
 		<script type="text/javascript" src="script/hh.gui.Scrollbar.js"></script>
+		<script type="text/javascript" src="script/hh.model.event.js"></script>
 		<script type="text/javascript" src="script/main.js"></script>
 	</body>
 </html>

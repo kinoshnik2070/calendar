@@ -5,7 +5,8 @@ var addEventPopup = new hh.gui.Popup({
 	margin: {
 		top: -10,
 		left: 145
-	}
+	},
+	closed: true
 });
 var faseEventPopup = new hh.gui.Popup({
 	template: document.getElementById("popup-fast-add-template").innerHTML,
@@ -13,10 +14,11 @@ var faseEventPopup = new hh.gui.Popup({
 	margin: {
 		top: 35,
 		left: 0
-	}
+	},
+	closed: true
 });
 var resultSearchList = new hh.gui.DropList({
-	tmplItem: "<li class=\"b-list__event_item\"> {title}  </li>"
+	tmplItem: document.getElementById("result-search-item-template").innerHTML
 });
 
 faseEventPopup.render();
@@ -38,6 +40,7 @@ calendar.on("select", function(event, a) {
 window.onresize = function() {
 	addEventPopup.adjust();
 	faseEventPopup.adjust();
+	resultSearchList.adjust();
 };
 
 hh.util.addEvent(document.querySelector(".b-button"), "click", function(event) {
@@ -47,78 +50,71 @@ hh.util.addEvent(document.querySelector(".b-button"), "click", function(event) {
 
 hh.util.addEvent(document.getElementById("abc"), "click", function(event) {
 	var data = [{
-		title: "abasddddddddddddddddddddddddddddddddddddddddddc"
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
 	}, {
-		title: "abc"
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
 	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
-	}, {
-		title: "abc"
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
+	},{
+		name: "Митинг на болотной с участием",
+		day: 13,
+		month: "Февраль"
 	}];
 	resultSearchList.setAnchor(event.target);
 	resultSearchList.renderByData(data);
 });
+
