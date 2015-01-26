@@ -37,14 +37,25 @@
 				<tbody class="b-calendar__container_day"></tbody>
 			</table>
 		</div>
+
 		<script type="text/template" id="calendar-day-template">
-			<td class="b-calendar__day" data-date="{dateString}">
-				<div class="b-calendar__day_content">{dayOfWeek}, {day}</div>
+			<td class="b-calendar__day" data-date="{{=it.dateString}}">
+				<div class="b-calendar__day_content">
+					{{? it.row == 0}}
+						{{=it.dayOfWeek}}, 
+					{{?}}
+					{{=it.day}} 
+					{{? it.event}}
+						<h5>{{=it.event.title}}</h5>
+					{{?}}
+				</div>
 			</td>
 		</script>
+
 		<script type="text/template" id="calendar-title-tempalte">
 			{month} {year}
 		</script>
+
 		<script type="text/template" id="popup-fast-add-template">
 			<form class="b-form b-form_fast_add_event">
 				<ul class="b-form__field">
@@ -59,6 +70,7 @@
 				</ul>
 			</form>
 		</script>
+
 		<script type="text/template" id="popup-add-template">
 			<form class="b-form b-form__add_event">
 				<ul class="b-form__field">
@@ -86,6 +98,7 @@
 				</ul>
 			</form>
 		</script>
+
 		<script type="text/template" id="result-search-item-template">
 			<li class="b-list__event_item">
 				<div class="b-list__fading_text_container">
@@ -96,6 +109,8 @@
 			</li>
 			<hr/>
 		</script>
+
+		<script type="text/javascript" src="script/lib/doT.min.js"></script>
 		<script type="text/javascript" src="script/hh.js"></script>
 		<script type="text/javascript" src="script/hh.Observer.js"></script>
 		<script type="text/javascript" src="script/hh.gui.Calendar.js"></script>

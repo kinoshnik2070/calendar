@@ -1,4 +1,7 @@
 ﻿(function() {
+
+	"use strict";
+	
 	hh.Observer = function() {
 
 		this._events = {};

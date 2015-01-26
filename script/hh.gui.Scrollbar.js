@@ -1,4 +1,7 @@
 (function() {
+
+	"use strict";
+	
 	hh.gui.Scrollbar = function(options) {
 		var self = this;
 		this._container = document.createElement("div");

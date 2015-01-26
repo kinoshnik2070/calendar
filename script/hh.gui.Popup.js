@@ -1,4 +1,7 @@
 ﻿(function() {
+
+	"use strict";
+
 	hh.gui.Popup = function(options) {
 
 		hh.Observer.call(this, arguments);

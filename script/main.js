@@ -1,4 +1,9 @@
-﻿var calendar = new hh.gui.Calendar();
+﻿"use strict";
+
+var eventStore = new EventStore();
+var calendar = new hh.gui.Calendar({
+	model: eventStore
+});
 var addEventPopup = new hh.gui.Popup({
 	template: document.getElementById("popup-add-template").innerHTML,
 	position: "left",

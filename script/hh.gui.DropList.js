@@ -1,4 +1,7 @@
 ﻿(function() {
+
+	"use strict";
+
 	hh.gui.DropList = function(options) {
 
 		this._template = "<div class=\"b-list__scroll_container\">" +
@@ -33,13 +36,13 @@
 				content: document.querySelector(".b-list__event"),
 				wrapper: document.querySelector(".b-list__scroll_container")
 			};
-			if(!this.scrollbar) {
+			if (!this.scrollbar) {
 				this.scrollbar = new hh.gui.Scrollbar(b);
 			}
 			this.scrollbar.calck();
 
-			if(b.content.offsetHeight < b.scroller.offsetHeight) {
-				hh.util.addClass(this._container, "b-popup-scoller")
+			if (b.content.offsetHeight < b.scroller.offsetHeight) {
+				hh.util.addClass(this._container, "b-popup-none-scoller")
 			}
 		};
 
