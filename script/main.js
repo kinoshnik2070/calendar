@@ -60,7 +60,7 @@ hh.util.addEvent(document.getElementById("abc"), "click", function(event) {
 	resultSearchList.renderByData(eventStore.getData());
 });
 
-hh.util.addEvent(document.querySelector(".j-add-event"), "click", function(event) {
-debugger
+addEventPopup.getLayout().on("click", ".j-add-event",function(event) {
+	debugger
 });
 

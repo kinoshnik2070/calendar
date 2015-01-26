@@ -84,6 +84,10 @@
 			this._calckPosition();
 		};
 
+		this.getLayout = function() {
+			return $(this._container);
+		};
+
 		this._initEvents();
 		this.hide();
 
