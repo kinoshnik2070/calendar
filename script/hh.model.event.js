@@ -1,6 +1,7 @@
 ﻿function Event(options) {
 	Model.call(this, arguments);
-	this.id = options.id;
+	options = options || {};
+	this.id = parseInt(options.id, 10);
 	this.title = options.title;
 	this.date = new Date(options.date);
 	this.participants = options.participants;
@@ -17,10 +18,12 @@ function Person() {
 function Model() {
 	this.get = function(value) {
 		return this[value];
+		return this;
 	};
 
 	this.set = function(key, value) {
 		this[key] = value;
+		return this;
 	};
 };
 
@@ -40,9 +43,6 @@ function EventStore(options) {
 			return;
 		}
 		var data = JSON.parse(localStorage[this._keyStore]);
-		if (!data) {
-			return;
-		}
 		for (var i = 0, len = data.length; i < len; i++) {
 			this.add(new Event(data[i]));
 		}
@@ -78,6 +78,10 @@ function EventStore(options) {
 				return this._data[i];
 			}
 		}
+	};
+
+	this.getData = function() {
+		return this._data;
 	};
 
 	this._read();

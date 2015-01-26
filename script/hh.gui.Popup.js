@@ -13,7 +13,7 @@
 
 		this.margin = options.margin;
 
-		this._template = options.template;
+		this._template = doT.template(options.template);
 		this._container = document.createElement("div");
 		this._close = document.createElement("div");
 		this._anchor = null;
@@ -22,7 +22,7 @@
 		hh.util.addClass(this._container, "b-popup__" + options.position);
 
 		hh.util.addClass(this._close, "b-popup__close");
-		this._container.innerHTML = this._template;
+		this._container.innerHTML = this._template();
 		if(this.closed) {
 			this._container.appendChild(this._close);
 		}
@@ -51,9 +51,9 @@
 			});
 		};
 
-		this.render = function() {
-			if(this.closed) {
-				this._container.appendChild(this._close);
+		this.render = function(model) {
+			if(model) {
+				this._container.innerHTML = this._template(model);
 			}
 			document.body.appendChild(this._container);
 		};

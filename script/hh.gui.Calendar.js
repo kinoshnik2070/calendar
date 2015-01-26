@@ -3,10 +3,10 @@
 	"use strict";
 
 	hh.gui.Calendar = function(options) {
-		
+
 		hh.Observer.call(this, arguments);
 
-		this._today = new Date
+		this._today = new Date;
 
 		this._current = new Date;
 

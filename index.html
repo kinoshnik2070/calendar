@@ -75,22 +75,24 @@
 			<form class="b-form b-form__add_event">
 				<ul class="b-form__field">
 					<li class="b-form__container_field">
-						<input type="text" class="b-form__input" />
+						<input type="text" class="b-form__input" name="title" />
 					</li>
-					<li class="b-form__container_field">
-						<input type="text" class="b-form__input" />
-					</li>
+					{{? it}}
 						<li class="b-form__container_field">
-						<input type="text" class="b-form__input" />
+							<input type="text" class="b-form__input" name="date" value="{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}" />
+						</li>
+					{{?}}
+						<li class="b-form__container_field">
+						<input type="text" class="b-form__input" name="participants" />
 					</li>
 					<li class="b-form__empty"></li>
 					<li class="b-form__container_field">
-						<textarea class="b-form__textarea"></textarea>
+						<textarea class="b-form__textarea" name="description" ></textarea>
 					</li>
 				</ul>
 				<ul class="b-form__control">
 					<li class="b-form__control_button">
-						<input type="button" class="b-form_button_default" value="Добавить" />
+						<input type="button" class="b-form_button_default  j-add-event" value="Добавить" />
 					</li>
 					<li class="b-form__control_button">
 						<input type="button" class="b-form_button_default" value="Удалить" />
@@ -100,14 +102,20 @@
 		</script>
 
 		<script type="text/template" id="result-search-item-template">
-			<li class="b-list__event_item">
-				<div class="b-list__fading_text_container">
-					<div class="b-list__fading_text"></div>
-				</div>
-				<div class="b-list__event_item_title">{name}</div>
-				<div class="b-list__event_item_date">{day} {month}</div>
-			</li>
-			<hr/>
+			{{? it.length > 0 }}
+				{{~it :value:index}}
+					<li class="b-list__event_item">
+						<div class="b-list__fading_text_container">
+							<div class="b-list__fading_text"></div>
+						</div>
+						<div class="b-list__event_item_title">{{=it[index].title}}</div>
+						<div class="b-list__event_item_date">{{=it[index].date.getDate()}} {{=it[index].date.getMonth()}}</div>
+					</li>
+					<hr/>
+				{{~}}
+			{{??}}
+				Не найдено
+			{{?}}
 		</script>
 
 		<script type="text/javascript" src="script/lib/doT.min.js"></script>

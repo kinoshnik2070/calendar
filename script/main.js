@@ -36,8 +36,10 @@ addEventPopup.on("hide", function() {
 	calendar.deselect();
 });
 
-calendar.on("select", function(event, a) {
-	addEventPopup.setAnchor(a.target);
+calendar.on("select", function(event, params) {
+	var model = (new Event).set("date", params.date);
+	addEventPopup.render(model);
+	addEventPopup.setAnchor(params.target);
 	addEventPopup.show();
 });
 
@@ -54,72 +56,11 @@ hh.util.addEvent(document.querySelector(".b-button"), "click", function(event) {
 });
 
 hh.util.addEvent(document.getElementById("abc"), "click", function(event) {
-	var data = [{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	}, {
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	}, {
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	},{
-		name: "Митинг на болотной с участием",
-		day: 13,
-		month: "Февраль"
-	}];
 	resultSearchList.setAnchor(event.target);
-	resultSearchList.renderByData(data);
+	resultSearchList.renderByData(eventStore.getData());
+});
+
+hh.util.addEvent(document.querySelector(".j-add-event"), "click", function(event) {
+debugger
 });
 

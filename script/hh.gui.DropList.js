@@ -17,17 +17,17 @@
 		};
 		hh.gui.Popup.call(this, options);
 		this._data = [];
-		this._tmplItem = options.tmplItem;
+		this._tmplItem = doT.template(options.tmplItem);
 
 		this.renderByData = function(data) {
 
-			this._data = data;
-			var str = "";
-			for (var i = 0, len = this._data.length; i < len; i++) {
-				str += hh.pattern(this._tmplItem, this._data[i]);
-			}
+			//this._data = data;
+			//var str = "";
+			//for (var i = 0, len = this._data.length; i < len; i++) {
+			//	str += hh.pattern(this._tmplItem, this._data[i]);
+			//}
 
-			this._container.querySelector(".b-list__event").innerHTML = str;
+			this._container.querySelector(".b-list__event").innerHTML = this._tmplItem(data);
 			this.show();
 
 
