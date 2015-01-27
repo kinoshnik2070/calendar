@@ -1,50 +1,42 @@
-﻿(function() {
+﻿(function () {
 
-	"use strict";
+    "use strict";
 
-	hh.gui.DropList = function(options) {
+    hh.gui.DropList = function (options) {
 
-		this._template = "<div class=\"b-list__scroll_container\">" +
-			"<div class=\"b-list__scroll\">" +
-			"<ul class=\"b-list__event\"></ul>" +
-			"</div>" +
-			"</div>";
-		options.template = this._template;
-		options.position = "bottom";
-		options.margin = {
-			top: 35,
-			left: 0
-		};
-		hh.gui.Popup.call(this, options);
-		this._data = [];
-		this._tmplItem = doT.template(options.tmplItem);
+        $.extend(options, {
+            template: $("#scroll-list-template").html(),
+            position: "bottom",
+            margin: {
+                top: 35,
+                left: 0
+            }
+        });
 
-		this.renderByData = function(data) {
+        hh.gui.Popup.call(this, options);
 
-			//this._data = data;
-			//var str = "";
-			//for (var i = 0, len = this._data.length; i < len; i++) {
-			//	str += hh.pattern(this._tmplItem, this._data[i]);
-			//}
+        this._data = [];
 
-			this._container.querySelector(".b-list__event").innerHTML = this._tmplItem(data);
-			this.show();
+        this._tmplItem = doT.template(options.tmplItem);
 
+        this.renderByData = function (data) {
 
-			var b = {
-				scroller: document.querySelector(".b-list__scroll"),
-				content: document.querySelector(".b-list__event"),
-				wrapper: document.querySelector(".b-list__scroll_container")
-			};
-			if (!this.scrollbar) {
-				this.scrollbar = new hh.gui.Scrollbar(b);
-			}
-			this.scrollbar.calck();
+            this.getLayout().find(".b-list__event").html(this._tmplItem(data));
+            this.show();
 
-			if (b.content.offsetHeight < b.scroller.offsetHeight) {
-				hh.util.addClass(this._container, "b-popup-none-scoller")
-			}
-		};
+            var b = {
+                scroller: this.getLayout().find(".b-list__scroll"),
+                content: this.getLayout().find(".b-list__event"),
+                wrapper: this.getLayout().find(".b-list__scroll_container")
+            };
+            if (!this.scrollbar) {
+                this.scrollbar = new hh.gui.Scrollbar(b);
+            }
+            this.scrollbar.calc();
+            if (b.content.height() < b.scroller.height()) {
+                this.getLayout().addClass("b-popup-none-scoller");
+            }
+        };
 
-	};
+    };
 })();

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Пример кода</title>
@@ -15,7 +15,7 @@
 			<div class="b-head__controls" style="width:900px;margin:auto;position:relative;top:60px;">
 				<ul style="list-style-type:none;margin	:0;padding:0;">
 					<li style="display:inline-block;">
-						<input class="b-button" value="Добавить" type="button" />
+						<input class="b-button" id="bc" value="Добавить" type="button" />
 					</li>
 					<li style="display:inline-block;">
 						<input class="b-button" id="abc" value="Обновить" type="button" />
@@ -28,10 +28,10 @@
 		</div>
 		<div class="b-calendar">
 			<div class="b-calendar__controls">
-				<div class="b-calendar__button b-calendar__button_previous_month"><</div>
-				<div class="b-calendar__title"></div>
-				<div class="b-calendar__button b-calendar__button_next_month">></div>
-				<div class="b-calendar__button b-calendar__button_today">Сегодня</div>
+				<div class="b-calendar__button b-calendar__button_previous_month j-calendar_previous_month"><</div>
+				<div class="b-calendar__title j-calendar-title"></div>
+				<div class="b-calendar__button b-calendar__button_next_month j-calendar_next_month">></div>
+				<div class="b-calendar__button b-calendar__button_today j-calendar_go_today">Сегодня</div>
 			</div>
 			<table class="b-calendar__content_month">
 				<tbody class="b-calendar__container_day"></tbody>
@@ -47,13 +47,16 @@
 					{{=it.day}} 
 					{{? it.event}}
 						<h5>{{=it.event.title}}</h5>
+						{{~it.event.participants :value:index}} 
+							{{=it.event.participants[index].name}} {{? it.event.participants.length - 1 != index}},{{?}} 
+						{{~}}
 					{{?}}
 				</div>
 			</td>
 		</script>
 
 		<script type="text/template" id="calendar-title-tempalte">
-			{month} {year}
+			{{=it.month}} {{=it.year}}
 		</script>
 
 		<script type="text/template" id="popup-fast-add-template">
@@ -75,15 +78,31 @@
 			<form class="b-form b-form__add_event">
 				<ul class="b-form__field">
 					<li class="b-form__container_field">
-						<input type="text" class="b-form__input" name="title" />
+						{{? it.title}}
+							<div>{{=it.title}}</div>
+						{{??}}
+							<input type="text" class="b-form__input" name="title"  />
+						{{?}}
 					</li>
-					{{? it}}
-						<li class="b-form__container_field">
-							<input type="text" class="b-form__input" name="date" value="{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}" />
-						</li>
-					{{?}}
-						<li class="b-form__container_field">
-						<input type="text" class="b-form__input" name="participants" />
+					<li class="b-form__container_field">
+						{{? it.date}}
+							<div>{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}</div>
+						{{??}}
+							<input type="text" class="b-form__input" value="{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}" />
+						{{?}}
+						<input type="hidden" name="date" value="{{=it.date}}" />
+					</li>
+					<li class="b-form__container_field">
+						{{? it.participants.length === 0}}
+							<input type="text" class="b-form__input" name="participants" />
+						{{??}}
+							<div>
+								{{~it.participants :value:index}} 
+									{{=it.participants[index].name}} {{? it.participants.length - 1 != index}},{{?}} 
+								{{~}}
+							</div>
+						{{?}}
+						
 					</li>
 					<li class="b-form__empty"></li>
 					<li class="b-form__container_field">
@@ -118,8 +137,26 @@
 			{{?}}
 		</script>
 
+		<script type="text/template" id="popup-template">
+			<div class="b-popup b-popup__{{=it.position}}">
+				{{? it.closed}}
+					<div class="b-popup__close j-close-popup"></div>
+				{{?}}
+				<div class="j-popup-content"></div>
+			</div>
+		</script>
+
+		<script type="text/template" id="scroll-list-template">
+			<div class="b-list__scroll_container">
+      			<div class="b-list__scroll">
+					<ul class="b-list__event"></ul>
+				</div>
+			</div>
+		</script>
+
 		<script type="text/javascript" src="script/lib/doT.min.js"></script>
 		<script type="text/javascript" src="script/lib/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="script/lib/jquery_expansion.js"></script>
 		<script type="text/javascript" src="script/hh.js"></script>
 		<script type="text/javascript" src="script/hh.Observer.js"></script>
 		<script type="text/javascript" src="script/hh.gui.Calendar.js"></script>

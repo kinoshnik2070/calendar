@@ -1,96 +1,97 @@
-﻿(function() {
+﻿(function () {
 
-	"use strict";
+    "use strict";
 
-	hh.gui.Popup = function(options) {
+    hh.gui.Popup = function (options) {
 
-		hh.Observer.call(this, arguments);
+        hh.Observer.call(this, arguments);
 
-		if (typeof options === "undefined") {
-			options = {};
-		}
-		this.closed = options.closed;
+        if (typeof options === "undefined") {
+            options = {};
+        }
 
-		this.margin = options.margin;
+        this._init = function (options) {
 
-		this._template = doT.template(options.template);
-		this._container = document.createElement("div");
-		this._close = document.createElement("div");
-		this._anchor = null;
+            this.margin = options.margin;
 
-		hh.util.addClass(this._container, "b-popup");
-		hh.util.addClass(this._container, "b-popup__" + options.position);
+            this._template = {
+                popup: doT.template($("#popup-template").html()),
+                content: doT.template(options.template)
+            };
 
-		hh.util.addClass(this._close, "b-popup__close");
-		this._container.innerHTML = this._template();
-		if(this.closed) {
-			this._container.appendChild(this._close);
-		}
 
-		this._initEvents = function() {
+            this._popup = $(this._template.popup(options));
 
-			var self = this;
+            this._container = this._popup.find(".j-popup-content");
 
-			hh.util.addEvent(this._close, "click", function() {
-				self.hide();
-			});
+            this._anchor = null;
+        }
 
-			hh.util.addEvent(document.body, "click", function(e) {
-				var element = e.target;
+        this._initEvents = function () {
 
-				if (!hh.util.hasClass(self._container, "g-hidden")) {
-					while (element !== null) {
-						element = element.parentNode;
-						if (element === self._container) {
-							break;
-						} else if (element === null) {
-							self.hide();
-						}
-					}
-				}
-			});
-		};
+            var self = this;
 
-		this.render = function(model) {
-			if(model) {
-				this._container.innerHTML = this._template(model);
-			}
-			document.body.appendChild(this._container);
-		};
+            this.getPopup().find(".j-close-popup").on("click", function () {
+                self.hide();
+            });
 
-		this.show = function() {
-			hh.util.removeClass(this._container, "g-hidden");
-		};
+            $(document.body).on("click", function (e) {
 
-		this.hide = function() {
-			hh.util.addClass(this._container, "g-hidden");
-			this.fire("hide");
-		};
 
-		this.setAnchor = function(anchor) {
-			this._anchor = anchor;
-			this._calckPosition();
-		};
+            });
+        };
 
-		this._calckPosition = function() {
-			if (this._anchor === null) {
-				return
-			};
-			this._container.style.left = (this._anchor.getBoundingClientRect().left + this.margin.left) + "px";
-			this._container.style.top = (this._anchor.getBoundingClientRect().top + this.margin.top + document.body.scrollTop) + "px";
-		};
+        this.render = function (model) {
+            if (model) {
+                this.getLayout().html(this._template.content(model));
+            } else {
+                $(document.body).append(this._popup);
+                this.getLayout().html(this._template.content(new Event));
+            }
+        };
 
-		this.adjust = function() {
-			this._calckPosition();
-		};
+        this.show = function () {
+            this.getPopup().removeClass("g-hidden");
+        };
 
-		this.getLayout = function() {
-			return $(this._container);
-		};
+        this.hide = function () {
+            this.getPopup().addClass("g-hidden");
+            this.fire("hide");
+        };
 
-		this._initEvents();
-		this.hide();
+        this.setAnchor = function (anchor) {
+            this._anchor = $(anchor);
+            this._calckPosition();
+        };
 
-	};
+        this._calckPosition = function () {
+            if (this._anchor === null) {
+                return
+            };
+            this.getPopup().css({
+                left: (this._anchor.offset().left + this.margin.left) + "px"
+            });
+            this.getPopup().css({
+                top: (this._anchor.offset().top + this.margin.top) + "px"
+            });
+        };
+
+        this.adjust = function () {
+            this._calckPosition();
+        };
+
+        this.getLayout = function () {
+            return $(this._container);
+        };
+
+        this.getPopup = function () {
+            return this._popup;
+        };
+
+        this._init(options);
+        this._initEvents();
+        this.hide();
+
+    };
 
 })();
