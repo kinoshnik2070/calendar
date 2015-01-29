@@ -24,7 +24,7 @@
 
             this._container = this._popup.find(".j-popup-content");
 
-            this._anchor = null;
+            this._anchor = options.anchor || null;
         }
 
         this._initEvents = function () {
@@ -35,10 +35,26 @@
                 self.hide();
             });
 
-            $(document.body).on("click", function (e) {
+            $(document.body).on("click", function (event) {
 
+                if (!self.getLayout().is(":visible") ||
+                    event.target === self._anchor.get(0) ||
+                    self._anchor.find(event.target).length > 0) {
+                    return;
+                }
+debugger
+                if (self.getLayout().find(event.target).length === 0) {
+                    self.hide();
+                }
 
             });
+
+            if (this._anchor) {
+                this._anchor.on("click", function () {
+                    self._calckPosition();
+                    self.show();
+                });
+            }
         };
 
         this.render = function (model) {

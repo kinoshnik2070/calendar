@@ -26,7 +26,8 @@
                 top: 35,
                 left: 0
             },
-            closed: true
+            closed: true,
+            anchor: $("#bc")
         });
 
         this._resultSearchList = new hh.gui.DropList({
@@ -48,27 +49,11 @@
                 self._calendar.deselect();
             });
 
-            this._calendar.on("select", function (event, params) {
-                var model = self._eventStore.getByDate(params.date);
-                if(!model) {
-                    var model = (new Event()).set("date", params.date);
-                }
-                self._addEventPopup.render(model);
-                self._addEventPopup.setAnchor(params.target);
-                self._addEventPopup.show();
-            });
+            this._calendar.on("select", $.proxy(this.selectDay, this));
+            this._resultSearchList.on("clickItem", $.proxy(this.selectSearchItem, this));
 
 
-            window.onresize = function () {
-                self._addEventPopup.adjust();
-                self._fasteEventPopup.adjust();
-                self._resultSearchList.adjust();
-            };
-
-            $("#bc").on("click", function (event) {
-                self._fasteEventPopup.setAnchor(event.target);
-                self._fasteEventPopup.show();
-            });
+            $(window).on("resize", $.proxy(this.adjust, this));
 
             $("#abc").on("click", function (event) {
                 self._resultSearchList.setAnchor(event.target);
@@ -76,16 +61,40 @@
             });
 
             self._addEventPopup.getLayout().on("click", ".j-add-event", function () {
-                
                 var object = $(".b-form__add_event").serializeObject(),
                     event = new Event(object);
-                self._eventStore.add(event);
-                self._calendar.render();
-                self._eventStore.save();
-                self._addEventPopup.hide();
-                self._calendar.render();
+                if (event.valid()) {
+                    self._eventStore.add(event);
+                    self._eventStore.save();
+                    self._addEventPopup.hide();
+                    self._calendar.render();
+                } else {
+                    var errors = event.getErrors();
+                }
             });
 
+        };
+
+        this.selectDay = function (event, params) {
+            var model = this._eventStore.getByDate(params.date);
+            if (!model) {
+                var model = (new Event()).set("date", params.date);
+            }
+            this._addEventPopup.render(model);
+            this._addEventPopup.setAnchor(params.target);
+            this._addEventPopup.show();
+        };
+
+        this.selectSearchItem = function (event, params) {
+            var id = params.target.data("event_id"),
+                model = this._eventStore.getById(id);
+            this._calendar.select(model.get("date"));
+        };
+
+        this.adjust = function() {
+            this._addEventPopup.adjust();
+            this._fasteEventPopup.adjust();
+            this._resultSearchList.adjust();
         };
 
         this._render();

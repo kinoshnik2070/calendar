@@ -38,5 +38,17 @@
             }
         };
 
+        this.initEvents = function() {
+            var self = this;
+            this.getLayout().on("click", "li", function(event) {
+                self.fire("clickItem", {
+                    target: $(this)
+                });
+                self.hide();
+            });
+        };
+
+        this.initEvents();
+
     };
 })();

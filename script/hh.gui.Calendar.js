@@ -99,7 +99,8 @@
                 str += "</tr>";
             }
             this.getLayout().html(str);
-            $("td[" + this._key + "='" + this._today.toDateString() + "']").addClass(this._todayClass);
+            
+            this.getCell(this._today).addClass(this._todayClass);
             this._element.title.html(this._template.calendarTitle({
                 month: hh.LOCAL[this._local].month[this._current.getMonth()],
                 year: this._current.getFullYear()
@@ -124,6 +125,16 @@
 
         this.getActiveDate = function() {
             return new Date(this._currentElement.data(this._key));
+        };
+
+        this.select = function(date) {
+            this._current = date;
+            this.render();
+            this.getCell(date).click();
+        };
+
+        this.getCell = function(date) {
+            return $("td[data-" + this._key + "='" + date.toDateString() + "']");
         };
 
         this._initEvents();

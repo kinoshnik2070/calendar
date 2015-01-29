@@ -50,6 +50,10 @@ function Model() {
         this[key] = value;
         return this;
     };
+
+    this.valid = function() {
+        return true;
+    };
 };
 
 function Store(options) {
@@ -106,6 +110,14 @@ function EventStore(options) {
             if (d.getDate() === date.getDate() &&
                 d.getMonth() === date.getMonth() &&
                 d.getFullYear() === date.getFullYear()) {
+                return this._data[i];
+            }
+        }
+    };
+
+    this.getById = function(id) {
+        for(var i = 0, len = this._data.length; i < len; i++) {
+            if(this._data[i].get("id") === id) {
                 return this._data[i];
             }
         }

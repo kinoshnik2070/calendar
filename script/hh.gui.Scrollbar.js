@@ -17,13 +17,16 @@
         };
 
         this.initEvent = function () {
-            this._wrapper.on("scroll", function () {
-                var dy = (self._scroller.scrollTop / self._content.offsetHeight) * self._scroller.offsetHeight;
-                self._scrollbar.style.top = dy + "px";
+            var self = this;
+            this._scroller.on("scroll", function () {
+                
+                var dy = (self._scroller.scrollTop() / self._content.height()) * self._scroller.height();
+                self._scrollbar.css({top: dy});
 
             });
 
             this._scrollbar.on("mousedown", function (event) {
+                
                 self._isDown = true;
                 self._y = parseInt(event.pageY, 10);
 
@@ -34,19 +37,21 @@
             });
 
             $(document.body).on("mousemove", function (event) {
+
                 if (self._isDown) {
-                    var dy = event.pageY - self._y;
-                    self._scroller.scrollTop += (dy / self._scroller.offsetHeight) * self._content.offsetHeight;
+                    var dy = event.pageY - self._y * 10;
+                    
+                    self._scroller.scrollTop((dy / self._scroller.height()) * self._content.height());
                     self._y = event.pageY;
                 }
             });
         }
 
         this.calc = function () {
-            this._height = (this._scroller.offsetHeight / this._content.offsetHeight) * this._scroller.offsetHeight;
-            this._width = this._scroller.offsetWidth - this._content.offsetWidth;
-            this._scroller.width = this._scroller.offsetWidth + this._width + "px";
-            this._scrollbar.height = this._height - 20 + "px";
+            this._height = (this._scroller.height() / this._content.height()) * this._scroller.height();
+            this._width = this._scroller.width() - this._content.width();
+            this._scroller.width(this._scroller.offsetWidth + this._width);
+            this._scrollbar.height(this._height - 20);
         };
 
         this.getLayout = function () {

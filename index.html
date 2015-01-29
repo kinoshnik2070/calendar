@@ -123,7 +123,7 @@
 		<script type="text/template" id="result-search-item-template">
 			{{? it.length > 0 }}
 				{{~it :value:index}}
-					<li class="b-list__event_item">
+					<li class="b-list__event_item" data-event_id={{=it[index].id}}>
 						<div class="b-list__fading_text_container">
 							<div class="b-list__fading_text"></div>
 						</div>
