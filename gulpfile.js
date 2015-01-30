@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
-    jslint = require("gulp-jslint");
+    jslint = require("gulp-jslint"),
+    spritesmith = require("gulp.spritesmith");
 
 
 gulp.task("js", function () {
@@ -24,4 +25,17 @@ gulp.task("js", function () {
     /* .pipe(concat('index.js'))
      .pipe(uglify())
      .pipe(gulp.dest('./build/js'));*/
+});
+
+gulp.task("sprite", function () {
+    var spriteData =
+        gulp.src("./image/*.png") // source path of the sprite images
+        .pipe(spritesmith({
+            imgName: 'sprite.png',
+            cssName: 'sprite.css',
+            imgPath: "../image/sprite.png"
+        }));
+
+    spriteData.img.pipe(gulp.dest('./image')); // output path for the sprite
+    spriteData.css.pipe(gulp.dest('./style')); // output path for the CSS
 });

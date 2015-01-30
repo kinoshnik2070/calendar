@@ -27,7 +27,7 @@
                 left: 0
             },
             closed: true,
-            anchor: $("#bc")
+            anchor: $(".j-fast_add_event")
         });
 
         this._resultSearchList = new hh.gui.DropList({
@@ -55,9 +55,14 @@
 
             $(window).on("resize", $.proxy(this.adjust, this));
 
-            $("#abc").on("click", function (event) {
-                self._resultSearchList.setAnchor(event.target);
-                self._resultSearchList.renderByData(self._eventStore.getData());
+
+            $(".j-input_search").on("input", function (event) {
+                if ($(this).val().length > 1) {
+                    self._resultSearchList.setAnchor($(this));
+                    self._resultSearchList.renderByData(self._eventStore.getData());
+                } else {
+                    self._resultSearchList.hide();
+                }
             });
 
             self._addEventPopup.getLayout().on("click", ".j-add-event", function () {

@@ -20,6 +20,7 @@
     "gulp": "^3.8.10"
   },
   "dependencies": {
-    "gulp-jslint": "^0.2.2"
+    "gulp-jslint": "^0.2.2",
+    "gulp.spritesmith": "^2.5.0"
   }
 }
