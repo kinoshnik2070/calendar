@@ -45,17 +45,19 @@
 		</div>
 
 		<script type="text/template" id="calendar-day-template">
-			<td class="b-calendar__day" data-date="{{=it.dateString}}">
+			<td class="b-calendar__day {{? it.event}}b-calendar__day--event{{?}}" data-date="{{=it.dateString}}">
 				<div class="b-calendar__day_content">
 					{{? it.row == 0}}
 						{{=it.dayOfWeek}}, 
 					{{?}}
 					{{=it.day}} 
 					{{? it.event}}
-						<h5>{{=it.event.title}}</h5>
-						{{~it.event.participants :value:index}} 
-							{{=it.event.participants[index].name}} {{? it.event.participants.length - 1 != index}},{{?}} 
-						{{~}}
+						<div class="b-calendar__day_title">{{=it.event.title}}</div>
+						<div class="b-calendar__dat_participants">
+							{{~it.event.participants :value:index}} 
+								{{=it.event.participants[index].name}} {{? it.event.participants.length - 1 != index}},{{?}} 
+							{{~}}
+						</div>
 					{{?}}
 				</div>
 			</td>
@@ -85,24 +87,23 @@
 				<ul class="b-form__field">
 					<li class="b-form__container_field">
 						{{? it.title}}
-							<div>{{=it.title}}</div>
+							<div class="b-event_title">{{=it.title}}</div>
 						{{??}}
-							<input type="text" class="b-form__input" name="title"  />
+							<input type="text" class="b-form__input" name="title" placeholder="Событие" />
 						{{?}}
 					</li>
 					<li class="b-form__container_field">
 						{{? it.date}}
-							<div>{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}</div>
-						{{??}}
-							<input type="text" class="b-form__input" value="{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}" />
+							<div class="b-event_date">{{=it.date.getDate()}}/{{=it.date.getMonth()}}/{{=it.date.getFullYear()}}</div>
 						{{?}}
 						<input type="hidden" name="date" value="{{=it.date}}" />
 					</li>
 					<li class="b-form__container_field">
 						{{? it.participants.length === 0}}
-							<input type="text" class="b-form__input" name="participants" />
+							<input type="text" class="b-form__input" name="participants" placeholder="Имена участников" />
 						{{??}}
-							<div>
+							<div class="b-event_participants">
+								<div>Участники: </div>
 								{{~it.participants :value:index}} 
 									{{=it.participants[index].name}} {{? it.participants.length - 1 != index}},{{?}} 
 								{{~}}
@@ -112,16 +113,23 @@
 					</li>
 					<li class="b-form__empty"></li>
 					<li class="b-form__container_field">
-						<textarea class="b-form__textarea" name="description" ></textarea>
+					{{? it.description}}
+						<div class="b-event_description">{{=it.description}}</div>
+					{{??}}
+						<textarea class="b-form__textarea" name="description" placeholder="Описание"></textarea>
+					{{?}}
 					</li>
 				</ul>
 				<ul class="b-form__control">
-					<li class="b-form__control_button">
-						<input type="button" class="b-form_button_default  j-add-event" value="Добавить" />
-					</li>
-					<li class="b-form__control_button">
-						<input type="button" class="b-form_button_default" value="Удалить" />
-					</li>
+					{{? !it.id}}
+						<li class="b-form__control_button">
+							<input type="button" class="b-form_button_default  j-add-event" value="Добавить" />
+						</li>
+					{{??}}
+						<li class="b-form__control_button">
+							<input type="button" class="b-form_button_default j-delete-event" data-event_id="{{=it.id}}" value="Удалить" />
+						</li>
+					{{?}}
 				</ul>
 			</form>
 		</script>

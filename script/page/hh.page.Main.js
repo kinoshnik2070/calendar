@@ -56,7 +56,7 @@
             $(window).on("resize", $.proxy(this.adjust, this));
 
 
-            $(".j-input_search").on("input", function (event) {
+            $(".j-input_search").on("input", function () {
                 if ($(this).val().length > 1) {
                     self._resultSearchList.setAnchor($(this));
                     self._resultSearchList.renderByData(self._eventStore.getData());
@@ -68,13 +68,18 @@
             self._addEventPopup.getLayout().on("click", ".j-add-event", function () {
                 var object = $(".b-form__add_event").serializeObject(),
                     event = new hh.model.Event(object);
+                self._eventStore.add(event);
+                self._eventStore.save();
+                self._addEventPopup.hide();
+                self._calendar.render();
+            });
 
-                if (event.valid()) {
-                    self._eventStore.add(event);
-                    self._eventStore.save();
-                    self._addEventPopup.hide();
-                    self._calendar.render();
-                }
+            self._addEventPopup.getLayout().on("click", ".j-delete-event", function () {
+                var id = $(this).data("event_id");
+                self._eventStore.deleteEvent(id);
+                self._eventStore.save();
+                self._addEventPopup.hide();
+                self._calendar.render();
             });
 
         };

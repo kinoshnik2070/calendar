@@ -29,7 +29,9 @@
 	border: 1px solid white;
 }
 
-.b-calendar__day--select.b-calendar__day--today .b-calendar__day_content, .b-calendar__day--select .b-calendar__day_content {
+.b-calendar__day--select.b-calendar__day--today .b-calendar__day_content, 
+.b-calendar__day--select.b-calendar__day--event .b-calendar__day_content,
+.b-calendar__day--select .b-calendar__day_content {
 	border:1px solid rgb(134, 201, 253);
 	outline:1px solid rgb(138, 191, 231);
 	background-color: rgb(229, 241, 249);
@@ -41,6 +43,13 @@
 	outline:1px solid rgb(235, 235, 235);
 	font-weight: bold;
 	background-color: rgb(235, 235, 235);
+}
+
+.b-calendar__day--event .b-calendar__day_content {
+	border: 1px solid rgb(194,228,254);
+	outline:1px solid rgb(235, 235, 235);
+	background-color: rgb(194,228,254);
+	font-weight: bold;
 }
 
 .b-calendar__controls {

@@ -7,7 +7,7 @@
 
         this._keyStore = "event";
         this._data = [];
-        this._lastId = 0;
+        this._lastId = 1;
 
         this._read = function () {
 
@@ -74,6 +74,17 @@
 
         this.getData = function () {
             return this._data;
+        };
+
+        this.deleteEvent = function (id) {
+            var i,
+                len = this._data.length;
+            for (i = 0; i < len; i++) {
+                if (this._data[i].get("id") === id) {
+                    this._data.splice(i, 1);
+                    return;
+                }
+            }
         };
 
         this._read();
