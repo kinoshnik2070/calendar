@@ -1,25 +1,29 @@
-﻿var hh = {};
+﻿(function () {
+    "use strict";
 
-hh.gui = {};
-hh.model = {};
-hh.util = {};
+    window.hh = {};
 
-hh.LOCAL = {
-    ru: {
-        dayOfWeek: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
-        month: ["Январь", "Ферваль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-    }
-};
+    hh.gui = {};
+    hh.model = {};
+    hh.store = {};
+    hh.util = {};
+    hh.page = {};
 
-hh.util = {
-
-};
-
-hh.extend = function (destination, source) {
-    for (var k in source) {
-        if (source.hasOwnProperty(k)) {
-            destination[k] = source[k];
+    hh.LOCAL = {
+        ru: {
+            dayOfWeek: ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
+            month: ["Январь", "Ферваль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
         }
-    }
-    return destination;
-};
+    };
+
+    hh.extend = function (destination, source) {
+        var k;
+        for (k in source) {
+            if (source.hasOwnProperty(k)) {
+                destination[k] = source[k];
+            }
+        }
+        return destination;
+    };
+
+}());
