@@ -10,6 +10,7 @@
         this.date = options.date ? new Date(options.date) : options.date;
         this.participants = hh.model.Person._parse(options.participants);
         this.description = options.description;
+        this.tags = [options.title];
     };
 
 }());

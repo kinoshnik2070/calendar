@@ -142,7 +142,7 @@
 							<div class="b-list__fading_text"></div>
 						</div>
 						<div class="b-list__event_item_title">{{=it[index].title}}</div>
-						<div class="b-list__event_item_date">{{=it[index].date.getDate()}} {{=it[index].date.getMonth()}}</div>
+						<div class="b-list__event_item_date">{{=it[index].date.getDate()}} {{=hh.util.units(it[index].date.getMonth(), hh.LOCAL["ru"].month)}}</div>
 					</li>
 					<hr/>
 				{{~}}

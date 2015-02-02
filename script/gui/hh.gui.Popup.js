@@ -38,7 +38,7 @@
                     self.show();
                 });
             }
-        };
+        }
 
         this.render = function (model) {
             if (model) {

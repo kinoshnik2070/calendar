@@ -90,7 +90,7 @@
                 for (j = 0; j < days; j++) {
                     tempDate = new Date(date.getTime() + 24 * 60 * 60 * 1000 * j);
                     params = {
-                        dayOfWeek: hh.LOCAL[this._local].dayOfWeek[j],
+                        dayOfWeek: hh.TEXT[this._local].dayOfWeek[j],
                         day: tempDate.getDate(),
                         dateString: tempDate.toDateString(),
                         event: this._model.getByDate(tempDate),
@@ -108,7 +108,7 @@
 
             this.getCell(this._today).addClass(this._todayClass);
             this._element.title.html(this._template.calendarTitle({
-                month: hh.LOCAL[this._local].month[this._current.getMonth()],
+                month: hh.TEXT[this._local].month[this._current.getMonth()],
                 year: this._current.getFullYear()
             }));
         };

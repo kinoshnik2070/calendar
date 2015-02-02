@@ -47,7 +47,7 @@
                     self._y = event.pageY;
                 }
             });
-        };
+        }
 
         this.calc = function () {
             this._height = (this._scroller.height() / this._content.height()) * this._scroller.height();

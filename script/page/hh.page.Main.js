@@ -59,7 +59,7 @@
 
             $(".j-input_search").on("input", function () {
                 if ($(this).val().length > 1) {
-                    var data = self._eventStore.getData();
+                    var data = self._eventStore.search($(this).val());
                     self._resultSearchList.setAnchor($(this));
                     self._resultSearchList.renderByData(data);
                 } else {
@@ -85,7 +85,6 @@
         };
 
         this.selectDay = function (params) {
-            
             var model = this._eventStore.getByDate(params.date);
             if (!model) {
                 model = (new hh.model.Event()).set("date", params.date);
