@@ -1,4 +1,5 @@
 (function () {
+    
     "use strict";
 
     hh.page.MainPage = function () {
@@ -58,8 +59,9 @@
 
             $(".j-input_search").on("input", function () {
                 if ($(this).val().length > 1) {
+                    var data = self._eventStore.getData();
                     self._resultSearchList.setAnchor($(this));
-                    self._resultSearchList.renderByData(self._eventStore.getData());
+                    self._resultSearchList.renderByData(data);
                 } else {
                     self._resultSearchList.hide();
                 }
@@ -71,7 +73,6 @@
                 self._eventStore.add(event);
                 self._eventStore.save();
                 self._addEventPopup.hide();
-                self._calendar.render();
             });
 
             self._addEventPopup.getLayout().on("click", ".j-delete-event", function () {
@@ -79,7 +80,6 @@
                 self._eventStore.deleteEvent(id);
                 self._eventStore.save();
                 self._addEventPopup.hide();
-                self._calendar.render();
             });
 
         };

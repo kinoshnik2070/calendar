@@ -20,6 +20,7 @@
             for (i = 0; i < len; i++) {
                 this.add(new hh.model.Event(data[i]));
             }
+            this.fire("load");
         };
 
         this.save = function () {
@@ -29,6 +30,7 @@
         this.add = function (data) {
             data.id = this._getLastId();
             this._data.push(data);
+            this.fire("addItem", data);
         };
 
         this._getLastId = function () {
@@ -82,6 +84,7 @@
             for (i = 0; i < len; i++) {
                 if (this._data[i].get("id") === id) {
                     this._data.splice(i, 1);
+                    this.fire("deleteItem");
                     return;
                 }
             }

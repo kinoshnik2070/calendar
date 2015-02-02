@@ -17,12 +17,20 @@
         };
 
         this.on = function (event, callback) {
-            if (this._events[event] === undefined) {
-                this._events[event] = [];
+            var events = [],
+                i;
+
+            if (typeof event === "string") {
+                this.on([event], callback);
             }
-            this._events[event].push({
-                callback: callback
-            });
+            for (i = 0; i < event.length; i++) {
+                if (this._events[event[i]] === undefined) {
+                    this._events[event[i]] = [];
+                }
+                this._events[event[i]].push({
+                    callback: callback
+                });
+            }
         };
     };
 

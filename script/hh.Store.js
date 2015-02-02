@@ -2,8 +2,8 @@
 
     "use strict";
 
-    hh.Store = function () {
-        return;
+    hh.Store = function (options) {
+        hh.Observer.call(this, options);
     };
 
 }());

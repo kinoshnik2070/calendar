@@ -61,9 +61,15 @@
                 self._current = new Date();
                 self.render();
             });
+
+            this._model.on(["addItem", "load", "deleteItem"], function () {
+                self.render();
+            });
+
         };
 
         this.render = function () {
+            console.info(123);
             this.getLayout().html("");
             var date = new Date(this._current.getFullYear(), this._current.getMonth()),
                 k = 1,

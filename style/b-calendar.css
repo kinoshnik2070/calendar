@@ -1,96 +1,84 @@
 ﻿.b-calendar {
-	width:900px;
-	margin: auto;
+    width: 900px;
+    margin: auto;
 }
-
 .b-calendar__content_month {
-	width:100%;
-	border-spacing:0px;
-	border-collapse:collapse;
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
 }
-
 .b-calendar__day {
-	border:1px solid rgb(235, 235, 235);
-	padding:0px;
-	width: 14.28%;
+    border: 1px solid #EBEBEB;
+    padding: 0px;
+    width: 14.28%;
 }
-
 .b-calendar__day_content {
-	width:100%;
-	height:116px;
-	position:relative;
-	top:0px;
-	left:0px;
-	box-sizing:border-box;
-	-moz-box-sizing: border-box;
-	padding:5px;
-	font-size: 0.8em;
-	color: rgb(153, 153, 153);
-	border: 1px solid white;
+    width: 100%;
+    height: 116px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 5px;
+    font-size: 0.8em;
+    color: #999999;
+    border: 1px solid #FFFFFF;
 }
-
-.b-calendar__day--select.b-calendar__day--today .b-calendar__day_content, 
+.b-calendar__day--select.b-calendar__day--today .b-calendar__day_content,
 .b-calendar__day--select.b-calendar__day--event .b-calendar__day_content,
 .b-calendar__day--select .b-calendar__day_content {
-	border:1px solid rgb(134, 201, 253);
-	outline:1px solid rgb(138, 191, 231);
-	background-color: rgb(229, 241, 249);
-	z-index: 1;
+    border: 1px solid #86C9FD;
+    outline: 1px solid #8ABFE7;
+    background-color: #E5F1F9;
+    z-index: 1;
 }
-
 .b-calendar__day--today .b-calendar__day_content {
-	border: 1px solid rgb(235, 235, 235);
-	outline:1px solid rgb(235, 235, 235);
-	font-weight: bold;
-	background-color: rgb(235, 235, 235);
+    border: 1px solid #EBEBEB;
+    outline: 1px solid #EBEBEB;
+    font-weight: bold;
+    background-color: #EBEBEB;
 }
-
 .b-calendar__day--event .b-calendar__day_content {
-	border: 1px solid rgb(194,228,254);
-	outline:1px solid rgb(235, 235, 235);
-	background-color: rgb(194,228,254);
-	font-weight: bold;
+    border: 1px solid #C2E4FE;
+    outline: 1px solid #EBEBEB;
+    background-color: #C2E4FE;
+    font-weight: bold;
 }
-
 .b-calendar__controls {
-	height:20px;
-	line-height:20px;
-	background-color:white;
-	padding-top:10px;
-	padding-bottom:10px;
-	-webkit-user-select:none;
-	user-select:none;
-	width:100%;
+    height: 20px;
+    line-height: 20px;
+    background-color: #FFFFFF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
 }
-
 .b-calendar__button {
-	display:inline-block;
-	border: 1px solid rgb(235, 235, 235);
-	border-radius:3px;
-	box-sizing:border-box;
-	box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
-	font-size:0.5em;
-	cursor:pointer;
-	vertical-align:text-bottom;
-	text-align:center;
+    display: inline-block;
+    border: 1px solid #EBEBEB;
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    font-size: 0.5em;
+    cursor: pointer;
+    vertical-align: text-bottom;
+    text-align: center;
 }
-
 .b-calendar__button_next_month {
-	width:22px;
+    width: 22px;
 }
-
 .b-calendar__button_previous_month {
-	width: 22px;
+    width: 22px;
 }
-
 .b-calendar__button_today {
-	padding-left:8px;
-	padding-right:8px;
-	font-size:0.8em;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 0.8em;
 }
-
 .b-calendar__title {
-	display:inline-block;
-	width:120px;
-	text-align:center;
+    display: inline-block;
+    width: 120px;
+    text-align: center;
 }

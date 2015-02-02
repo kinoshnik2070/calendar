@@ -1,129 +1,114 @@
 ﻿.b-list__scroll_container {
-	display: inline-block;
-	vertical-align: top;
-	position: relative;
-	overflow: hidden;
-	width: 200px;
-	height: 300px;
-	background: #fff;
-	text-align: left;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 300px;
+    background: #fff;
+    text-align: left;
 }
-
 .b-list__scroll {
-	height: 100%;
-	overflow-y: scroll;
-	-moz-user-select: none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	user-select: none;    
+    height: 100%;
+    overflow-y: scroll;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
-
 .b-list__scroll::-webkit-scrollbar {
-	width: 0;
+    width: 0;
 }
-
 .b-list__container_scrollbar {
-	position: absolute;
-	z-index: 3;
-	top: 10px;
-	bottom: 10px;
-	right: 5px;
-	width: 8px;
-	border-radius: 5px;
-	background: white;
-	pointer-events: none;
-	display: block;
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    bottom: 10px;
+    right: 5px;
+    width: 8px;
+    border-radius: 5px;
+    background: #FFFFFF;
+    pointer-events: none;
+    display: block;
 }
-
 .b-list_scrollbar {
-	position: absolute;
-	z-index: 1;
-	width: 8px;
-	border-radius: 3px;
-	background: #987;
-	opacity: 0.8;
-	-webkit-transition: opacity .2s linear;
-	transition: opacity .2s linear;
-	pointer-events: auto;
+    position: absolute;
+    z-index: 1;
+    width: 8px;
+    border-radius: 3px;
+    background: #987;
+    opacity: 0.8;
+    -webkit-transition: opacity .2s linear;
+    transition: opacity .2s linear;
+    pointer-events: auto;
 }
-
 .b-list__event {
-	width:100%;
-	background-color:white;
-	list-style-type:none;
-	box-sizing:border-box;
-	padding: 0;
-	padding-right: 20px;
-	margin: 0px;
+    width: 100%;
+    background-color: #FFFFFF;
+    list-style-type: none;
+    box-sizing: border-box;
+    padding: 0;
+    padding-right: 20px;
+    margin: 0px;
 }
-
 .b-list__event hr {
-	border-color: rgb(216, 216, 216);
-	border-style: solid;
-	border-width: 1px;
-	margin-top:3px;
-	margin-bottom: 3px;
+    border-color: #D8D8D8;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-
 .b-list__event hr:last-child {
-	display: none;
+    display: none;
 }
-
 .b-list__event_item {
-	position:relative;
-	width:100%;
-	height:40px;
-	box-sizing: border-box;
-	padding: 5px;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 5px;
 }
-
 .b-list__event_item_title {
-	position:relative;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-	overflow:hidden;
+    position: relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
-
 .b-list__event_item_date {
-	font-size: 12px;
+    font-size: 12px;
 }
-
 .b-list__fading_text_container {
-	width:100%;
-	height:100%;
-	position: absolute;
-	top:0px;
-	left:0px;
-	z-index: 1000;
-	overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    overflow: hidden;
 }
-
 .b-list__fading_text {
-	width:50%;
-	height:100%;
-	position:absolute;
-	background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255,255, 255, 0));
-	right: 0px;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    right: 0px;
 }
-
 .b-list__event_item:hover {
-	background-color: rgb(24,159,255);
-	color:white;
-	cursor: pointer;
+    background-color: #189FFF;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 .b-list__event_item:hover .b-list__fading_text {
-	background: linear-gradient(to left, rgba(24,159,255,1), rgba(255,255, 255, 0));
+    background: linear-gradient(to left, rgba(24, 159, 255, 1), rgba(255, 255, 255, 0));
 }
 
-/*
-	Дроп лист без скроллеров
- */
+/* Дроп лист без скроллеров */
 .b-popup-none-scoller .b-list__container_scrollbar {
-	display: none;
+    display: none;
 }
 .b-popup-none-scoller .b-list__event {
-	padding-right: 0px;
+    padding-right: 0px;
 }
 .b-popup-none-scoller .b-list__scroll_container {
-	height: auto;
+    height: auto;
 }
