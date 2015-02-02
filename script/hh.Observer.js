@@ -17,8 +17,7 @@
         };
 
         this.on = function (event, callback) {
-            var events = [],
-                i;
+            var i;
 
             if (typeof event === "string") {
                 this.on([event], callback);

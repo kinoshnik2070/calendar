@@ -35,10 +35,9 @@
 
         this._model = options.model;
 
-        this._initEvents = function () {
+        function _initEvents() {
             var self = this;
-
-            this.getLayout().on("click", "td", function () {
+            self.getLayout().on("click", "td", function () {
                 $(self._currentElement).removeClass(self._selectClass);
                 $(this).addClass(self._selectClass);
                 self._currentElement = $(this);
@@ -49,27 +48,25 @@
 
             });
 
-            this._element.previousMonth.on("click", function () {
+            self._element.previousMonth.on("click", function () {
                 self.go(-1);
             });
 
-            this._element.nextMonth.on("click", function () {
+            self._element.nextMonth.on("click", function () {
                 self.go(1);
             });
 
-            this._element.today.on("click", function () {
+            self._element.today.on("click", function () {
                 self._current = new Date();
                 self.render();
             });
 
-            this._model.on(["addItem", "load", "deleteItem"], function () {
+            self._model.on(["addItem", "load", "deleteItem"], function () {
                 self.render();
             });
-
-        };
+        }
 
         this.render = function () {
-            console.info(123);
             this.getLayout().html("");
             var date = new Date(this._current.getFullYear(), this._current.getMonth()),
                 k = 1,
@@ -139,14 +136,19 @@
         this.select = function (date) {
             this._current = date;
             this.render();
-            this.getCell(date).click();
+            this._currentElement = this.getCell(date);
+            this._currentElement.addClass(this._selectClass);
+            this.fire("select", {
+                target: this._currentElement,
+                date: date
+            });
         };
 
         this.getCell = function (date) {
             return $("td[data-" + this._key + "='" + date.toDateString() + "']");
         };
 
-        this._initEvents();
+        _initEvents.call(this, []);
 
     };
 }());

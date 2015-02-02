@@ -1,5 +1,5 @@
 (function () {
-    
+
     "use strict";
 
     hh.page.MainPage = function () {
@@ -85,6 +85,7 @@
         };
 
         this.selectDay = function (params) {
+            
             var model = this._eventStore.getByDate(params.date);
             if (!model) {
                 model = (new hh.model.Event()).set("date", params.date);

@@ -10,44 +10,27 @@
             options = {};
         }
 
-        this._init = function (options) {
+        this.margin = options.margin;
 
-            this.margin = options.margin;
-
-            this._template = {
-                popup: doT.template($("#popup-template").html()),
-                content: doT.template(options.template)
-            };
-
-
-            this._popup = $(this._template.popup(options));
-
-            this._container = this._popup.find(".j-popup-content");
-
-            this._anchor = options.anchor || null;
+        this._template = {
+            popup: doT.template($("#popup-template").html()),
+            content: doT.template(options.template)
         };
 
-        this._initEvents = function () {
+        this._popup = $(this._template.popup(options));
+
+        this._container = this._popup.find(".j-popup-content");
+
+        this._anchor = options.anchor || null;
+
+
+        function _initEvents() {
 
             var self = this;
 
             this.getPopup().find(".j-close-popup").on("click", function () {
                 self.hide();
             });
-
-           /* $(document.body).on("click", function (event) {
-
-                if (!self.getLayout().is(":visible") ||
-                    event.target === self._anchor.get(0) ||
-                    self._anchor.find(event.target).length > 0) {
-                    return;
-                }
-                debugger
-                if (self.getLayout().find(event.target).length === 0) {
-                    self.hide();
-                }
-
-            });*/
 
             if (this._anchor) {
                 this._anchor.on("click", function () {
@@ -104,8 +87,7 @@
             return this._popup;
         };
 
-        this._init(options);
-        this._initEvents();
+        _initEvents.call(this, options);
         this.hide();
 
     };

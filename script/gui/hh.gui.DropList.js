@@ -19,6 +19,16 @@
 
         this._tmplItem = doT.template(options.tmplItem);
 
+        function _initEvents() {
+            var self = this;
+            this.getLayout().on("click", "li", function () {
+                self.fire("clickItem", {
+                    target: $(this)
+                });
+                self.hide();
+            });
+        }
+
         this.renderByData = function (data) {
 
             this.getLayout().find(".b-list__event").html(this._tmplItem(data));
@@ -38,17 +48,6 @@
             }
         };
 
-        this.initEvents = function () {
-            var self = this;
-            this.getLayout().on("click", "li", function () {
-                self.fire("clickItem", {
-                    target: $(this)
-                });
-                self.hide();
-            });
-        };
-
-        this.initEvents();
-
+        _initEvents.call(this);
     };
 }());

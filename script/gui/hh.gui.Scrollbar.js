@@ -3,7 +3,8 @@
     "use strict";
 
     hh.gui.Scrollbar = function (options) {
-        this.init = function () {
+
+        function _init() {
             this._container = $("<div></div>");
             this.getLayout().addClass("b-list__container_scrollbar");
             this._scroller = options.scroller;
@@ -13,9 +14,9 @@
             this._scrollbar.addClass("b-list_scrollbar");
             this._container.append(this._scrollbar);
             this._wrapper.append(this._container);
-        };
+        }
 
-        this.initEvent = function () {
+        function _initEvents() {
             var self = this;
             this._scroller.on("scroll", function () {
 
@@ -59,8 +60,8 @@
             return $(this._container);
         };
 
-        this.init();
-        this.initEvent();
+        _init.call(this, options);
+        _initEvents.call(this, options);
         this.calc();
 
     };
