@@ -148,6 +148,10 @@
             return $("td[data-" + this._key + "='" + date.toDateString() + "']");
         };
 
+        this.getCurrentyDate = function () {
+            return this._current;
+        };
+
         _initEvents.call(this, []);
 
     };

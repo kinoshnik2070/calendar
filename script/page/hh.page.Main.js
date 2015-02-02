@@ -28,7 +28,7 @@
                 left: 0
             },
             closed: true,
-            anchor: $(".j-fast_add_event")
+            anchor: $(".j-fast_add_event_show")
         });
 
         this._resultSearchList = new hh.gui.DropList({
@@ -52,6 +52,9 @@
 
             this._calendar.on("select", $.proxy(this.selectDay, this));
             this._resultSearchList.on("clickItem", $.proxy(this.selectSearchItem, this));
+            this._eventStore.on("validError", function () {
+                window.alert("Error event!");
+            });
 
 
             $(window).on("resize", $.proxy(this.adjust, this));
@@ -65,6 +68,14 @@
                 } else {
                     self._resultSearchList.hide();
                 }
+            });
+
+            self._fasteEventPopup.getLayout().on("click", ".j-fast_add_event", function () {
+                var object = $(".b-form_fast_add_event").serializeObject(),
+                    event = self._parseFastEvent(object.event);
+                self._eventStore.add(event);
+                self._eventStore.save();
+                self._fasteEventPopup.hide();
             });
 
             self._addEventPopup.getLayout().on("click", ".j-add-event", function () {
@@ -98,6 +109,30 @@
             var id = params.target.data("event_id"),
                 model = this._eventStore.getById(id);
             this._calendar.select(model.get("date"));
+        };
+
+        this._parseFastEvent = function (str) {
+            if (str.split(",").length !== 2) {
+                return new hh.model.Event();
+            }
+            var arr = str.split(","),
+                date = arr[0].split(" "),
+                title = arr[1].trim(),
+                day = parseInt(date[0], 10),
+                month = date[1].trim(),
+                year = this._calendar.getCurrentyDate().getFullYear(),
+                i;
+            for (i = 0; i < hh.TEXT[hh.getCulture()].monthsGenitive.length; i++) {
+                if (month.toLowerCase() === hh.TEXT[hh.getCulture()].monthsGenitive[i]) {
+                    date = new Date(year, i, day);
+                    break;
+                }
+            }
+            return new hh.model.Event({
+                title: title,
+                date: date
+            });
+
         };
 
         this.adjust = function () {

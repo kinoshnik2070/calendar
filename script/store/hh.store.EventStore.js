@@ -26,9 +26,13 @@
         };
 
         this.add = function (data) {
-            data.id = this._getLastId();
-            this._data.push(data);
-            this.fire("addItem", data);
+            if (data.valid()) {
+                data.set("id", this._getLastId());
+                this._data.push(data);
+                this.fire("addItem", data);
+            } else {
+                this.fire("validError");
+            }
         };
 
         this._getLastId = function () {

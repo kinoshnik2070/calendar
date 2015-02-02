@@ -11,6 +11,13 @@
         this.participants = hh.model.Person._parse(options.participants);
         this.description = options.description;
         this.tags = [options.title];
+
+        this.valid = function () {
+            if (this.date === undefined || this.date.toString() === "Invalid Date") {
+                return false;
+            }
+            return true;
+        };
     };
 
 }());
