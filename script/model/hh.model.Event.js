@@ -16,6 +16,9 @@
             if (this.date === undefined || this.date.toString() === "Invalid Date") {
                 return false;
             }
+            if (this.title === undefined || this.title === "") {
+                return false;
+            }
             return true;
         };
     };

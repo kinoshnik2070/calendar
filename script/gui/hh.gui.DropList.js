@@ -37,7 +37,7 @@
                 scroller: this.getLayout().find(".b-list__scroll"),
                 content: this.getLayout().find(".b-list__event")
             };
-            
+
             this.getLayout().removeClass("b-popup-none-scoller");
             if (element.content.height() < element.scroller.height()) {
                 this.getLayout().addClass("b-popup-none-scoller");
