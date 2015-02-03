@@ -32,6 +32,18 @@
                 self.hide();
             });
 
+            $(document.body).on("click", function (event) {
+                if (!self.getLayout().is(":visible") ||
+                    event.target === self._anchor.get(0) ||
+                    self._anchor.find(event.target).length > 0) {
+                    return;
+                }
+                if (self.getLayout().find(event.target).length === 0) {
+                    self.hide();
+                }
+
+            });
+
             if (this._anchor) {
                 this._anchor.on("click", function () {
                     self._calckPosition();

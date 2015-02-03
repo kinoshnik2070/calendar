@@ -96,13 +96,16 @@
         };
 
         this.selectDay = function (params) {
-            var model = this._eventStore.getByDate(params.date);
+            var model = this._eventStore.getByDate(params.date),
+                self = this;
             if (!model) {
                 model = (new hh.model.Event()).set("date", params.date);
             }
             this._addEventPopup.render(model);
             this._addEventPopup.setAnchor(params.target);
-            this._addEventPopup.show();
+            setTimeout(function () {
+                self._addEventPopup.show()
+            }, 20);
         };
 
         this.selectSearchItem = function (params) {
@@ -132,7 +135,6 @@
                 title: title,
                 date: date
             });
-
         };
 
         this.adjust = function () {
