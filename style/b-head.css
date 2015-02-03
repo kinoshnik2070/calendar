@@ -55,7 +55,6 @@ body {
     box-sizing: border-box;
     background-color: transparent;
     text-shadow: 0 1px 0 #ffffff;
-    cursor: pointer;
     vertical-align: middle;
     position: relative;
     position: absolute;
@@ -64,7 +63,6 @@ body {
 .b-input_search .b-input_search__icon {
     border: 0px;
     display: inline-block;
-    cursor: pointer;
     position: absolute;
     top: 50%;
     left: 50%;

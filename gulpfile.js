@@ -3,7 +3,7 @@ var gulp = require('gulp'),
     spritesmith = require("gulp.spritesmith");
 
 
-gulp.task("js", function () {
+gulp.task("jslint", function () {
     gulp.src(["./script/hh.js",
         "./script/hh.Observer.js",
         "./script/hh.Model.js",
@@ -14,7 +14,6 @@ gulp.task("js", function () {
         "./script/gui/hh.gui.Calendar.js",
         "./script/gui/hh.gui.Popup.js",
         "./script/gui/hh.gui.DropList.js",
-        "./script/gui/hh.gui.Scrollbar.js",
         "./script/gui/hh.model.event.js",
         "./script/page/hh.page.Main.js"
     ]).pipe(jslint({

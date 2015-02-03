@@ -59,16 +59,8 @@
 
             $(window).on("resize", $.proxy(this.adjust, this));
 
-
-            $(".j-input_search").on("input", function () {
-                if ($(this).val().length > 1) {
-                    var data = self._eventStore.search($(this).val());
-                    self._resultSearchList.setAnchor($(this));
-                    self._resultSearchList.renderByData(data);
-                } else {
-                    self._resultSearchList.hide();
-                }
-            });
+            $(".j-input_search").on("input", $.proxy(this.searchQuery, this));
+            $(".j-input_search").on("focus", $.proxy(this.searchQuery, this));
 
             self._fasteEventPopup.getLayout().on("click", ".j-fast_add_event", function () {
                 var object = $(".b-form_fast_add_event").serializeObject(),
@@ -103,8 +95,8 @@
             }
             this._addEventPopup.render(model);
             this._addEventPopup.setAnchor(params.target);
-            setTimeout(function () {
-                self._addEventPopup.show()
+            window.setTimeout(function () {
+                self._addEventPopup.show();
             }, 20);
         };
 
@@ -112,6 +104,18 @@
             var id = params.target.data("event_id"),
                 model = this._eventStore.getById(id);
             this._calendar.select(model.get("date"));
+        };
+
+        this.searchQuery = function (event) {
+            var element = $(event.target),
+                data;
+            if (element.val().length > 1) {
+                data = this._eventStore.search(element.val());
+                this._resultSearchList.setAnchor(element);
+                this._resultSearchList.renderByData(data);
+            } else {
+                this._resultSearchList.hide();
+            }
         };
 
         this._parseFastEvent = function (str) {

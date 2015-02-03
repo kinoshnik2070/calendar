@@ -33,9 +33,7 @@
             });
 
             $(document.body).on("click", function (event) {
-                if (!self.getLayout().is(":visible") ||
-                    event.target === self._anchor.get(0) ||
-                    self._anchor.find(event.target).length > 0) {
+                if (!self.getLayout().is(":visible") || event.target === self._anchor.get(0) || self._anchor.find(event.target).length > 0) {
                     return;
                 }
                 if (self.getLayout().find(event.target).length === 0) {
