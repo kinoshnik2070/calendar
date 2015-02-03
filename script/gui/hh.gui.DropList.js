@@ -30,21 +30,17 @@
         }
 
         this.renderByData = function (data) {
-
             this.getLayout().find(".b-list__event").html(this._tmplItem(data));
             this.show();
 
             var element = {
                 scroller: this.getLayout().find(".b-list__scroll"),
-                content: this.getLayout().find(".b-list__event"),
-                wrapper: this.getLayout().find(".b-list__scroll_container")
+                content: this.getLayout().find(".b-list__event")
             };
-            this.getLayout().removeClass("b-popup-none-scoller").removeClass("b-popup-none-scoller");
+            
+            this.getLayout().removeClass("b-popup-none-scoller");
             if (element.content.height() < element.scroller.height()) {
                 this.getLayout().addClass("b-popup-none-scoller");
-            }
-            if (data.length === 0) {
-                this.getLayout().addClass("b-popup-none-element");
             }
         };
 
