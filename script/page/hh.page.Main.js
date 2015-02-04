@@ -53,7 +53,7 @@
             this._calendar.on("select", $.proxy(this.selectDay, this));
             this._resultSearchList.on("clickItem", $.proxy(this.selectSearchItem, this));
             this._eventStore.on("validError", function () {
-                window.alert("Error event!");
+                window.alert("Не удалось добавить событие");
             });
 
 
