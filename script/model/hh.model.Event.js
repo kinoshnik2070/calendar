@@ -3,7 +3,9 @@
     "use strict";
 
     hh.model.Event = function (options) {
-        hh.Model.call(this, arguments);
+
+        hh.Model.apply(this, arguments);
+        
         options = options || {};
         this.id = parseInt(options.id, 10);
         this.title = options.title;

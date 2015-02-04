@@ -3,7 +3,9 @@
     "use strict";
 
     hh.model.Person = function (options) {
+
         hh.Model.call(this, arguments);
+        
         options = options || {};
         this.name = options.name;
         this.surname = options.surname;

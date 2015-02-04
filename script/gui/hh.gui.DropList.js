@@ -13,7 +13,7 @@
             }
         });
 
-        hh.gui.Popup.call(this, options);
+        hh.gui.Popup.apply(this, arguments);
 
         this._data = [];
 

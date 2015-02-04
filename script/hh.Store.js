@@ -3,7 +3,9 @@
     "use strict";
 
     hh.Store = function (options) {
-        hh.Observer.call(this, options);
+
+        hh.Observer.apply(this, options);
+        
     };
 
 }());

@@ -4,7 +4,7 @@
 
     hh.gui.Calendar = function (options) {
 
-        hh.Observer.call(this, arguments);
+        hh.Observer.apply(this, arguments);
 
         this._today = new Date();
 

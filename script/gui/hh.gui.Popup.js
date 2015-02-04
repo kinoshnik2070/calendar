@@ -4,7 +4,7 @@
 
     hh.gui.Popup = function (options) {
 
-        hh.Observer.call(this, arguments);
+        hh.Observer.apply(this, arguments);
 
         if (options === undefined) {
             options = {};

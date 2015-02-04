@@ -3,6 +3,7 @@
     "use strict";
 
     hh.store.EventStore = function (options) {
+        
         hh.Store.call(this, options);
 
         this._keyStore = "event";
